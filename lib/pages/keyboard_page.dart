@@ -16,18 +16,28 @@ class KeyboardPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               FunctionSection(),
+              SizedBox.square(dimension: 20.0),
               AlphanumericSection(),
             ],
           ),
+          SizedBox.square(dimension: 20.0),
           Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
-            children: [],
+            children: [
+              SystemSection(),
+              SizedBox.square(dimension: 20.0),
+              CursorSection(),
+            ],
           ),
+          SizedBox.square(dimension: 20.0),
           Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
-            children: [],
+            children: [
+              SizedBox.square(dimension: 20.0),
+              NumpadSection(),
+            ],
           ),
         ],
       ),

@@ -196,7 +196,15 @@ class SystemSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        KeyButton('PS', null, null),
+        KeyButton('Scroll', null, null),
+        KeyButton('Pause', null, null),
+      ],
+    );
   }
 }
 
@@ -205,7 +213,61 @@ class CursorSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            KeyButton('Ins', null, null),
+            KeyButton('Inicio', null, null),
+            KeyButton('Re Pág', null, null),
+          ],
+        ),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            KeyButton('Del', null, null),
+            KeyButton('Fin', null, null),
+            KeyButton('Av Pág', null, null),
+          ],
+        ),
+        SizedBox(height: keySize + 7),
+        KeyButton(
+          null,
+          null,
+          null,
+          icon: Icon(Icons.keyboard_arrow_up),
+        ),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            KeyButton(
+              null,
+              null,
+              null,
+              icon: Icon(Icons.keyboard_arrow_left),
+            ),
+            KeyButton(
+              null,
+              null,
+              null,
+              icon: Icon(Icons.keyboard_arrow_down),
+            ),
+            KeyButton(
+              null,
+              null,
+              null,
+              icon: Icon(Icons.keyboard_arrow_right),
+            ),
+          ],
+        ),
+      ],
+    );
   }
 }
 
@@ -214,6 +276,99 @@ class NumpadSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        SizedBox(height: keySize + 7),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            KeyButton('Num', null, null),
+            KeyButton('/', null, null),
+            KeyButton('*', null, null),
+            KeyButton('-', null, null),
+          ],
+        ),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    KeyButton('Inicio', '7', null),
+                    KeyButton('↑', '8', null),
+                    KeyButton('Re Pág', '9', null),
+                  ],
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    KeyButton('←', '4', null),
+                    KeyButton('', '5', null),
+                    KeyButton('→', '6', null),
+                  ],
+                ),
+              ],
+            ),
+            KeyButton(
+              '+',
+              null,
+              null,
+              height: keySize * 2 + 7,
+            ),
+          ],
+        ),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    KeyButton('Fin', '1', null),
+                    KeyButton('↓', '2', null),
+                    KeyButton('Av Pág', '3', null),
+                  ],
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    KeyButton(
+                      'Ins',
+                      '0',
+                      null,
+                      width: keySize * 2 + 7,
+                    ),
+                    KeyButton('Del', '.', null),
+                  ],
+                ),
+              ],
+            ),
+            KeyButton(
+              null,
+              null,
+              null,
+              icon: Icon(Icons.subdirectory_arrow_left),
+              height: keySize * 2 + 7,
+            ),
+          ],
+        ),
+      ],
+    );
   }
 }

@@ -10,6 +10,7 @@ class KeyButton extends StatelessWidget {
     this.thirdLevel, {
     super.key,
     this.width,
+    this.height,
     this.icon,
   });
 
@@ -18,13 +19,14 @@ class KeyButton extends StatelessWidget {
   final String? secordLevel;
   final String? thirdLevel;
   final double? width;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
     return Card(
       child: Container(
         width: width ?? keySize,
-        height: keySize,
+        height: height ?? keySize,
         padding: const EdgeInsets.symmetric(
           horizontal: 8.0,
           vertical: 3.0,
