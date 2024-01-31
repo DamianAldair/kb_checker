@@ -1,0 +1,37 @@
+name: kb_checker
+description: Keyboard tester.
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.0.2 <4.0.0'
+
+dependencies:
+  adaptive_theme: any
+  bitsdojo_window: any
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: any
+  window_manager: any
+
+dev_dependencies:
+  flutter_launcher_icons: any
+  flutter_lints: any
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  generate: true
+  # assets:
+  #   - assets/icons/
+  #   - assets/images/
+
+flutter_icons:
+  image_path: 'assets/icons/icon_square.png'
+  windows:
+    generate: true
+    image_path: 'assets/icons/icon_square.png'
+    icon_size: 256
