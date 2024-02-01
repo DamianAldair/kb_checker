@@ -9,7 +9,7 @@ const String appTitle = 'KB Checker';
 void main() {
   runApp(const MainApp());
   doWhenWindowReady(() {
-    const size = Size(600, 450);
+    const size = Size(1230, 520);
     appWindow.minSize = size;
     appWindow.size = size;
     appWindow.alignment = Alignment.center;
@@ -24,17 +24,25 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AdaptiveTheme(
-      light: ThemeData.light().copyWith(useMaterial3: true),
-      dark: ThemeData.dark().copyWith(useMaterial3: true),
+      debugShowFloatingThemeButton: true,
+      light: ThemeData.light().copyWith(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
+      ),
+      dark: ThemeData.dark().copyWith(
+        useMaterial3: true,
+      ),
       initial: AdaptiveThemeMode.system,
       builder: (ThemeData light, ThemeData dark) {
-        return const MaterialApp(
+        return MaterialApp(
           debugShowCheckedModeBanner: false,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
-          locale: Locale('es'),
+          locale: const Locale('es'),
+          theme: light,
+          darkTheme: dark,
           title: appTitle,
-          home: KeyboardPage(),
+          home: const KeyboardPage(),
         );
       },
     );

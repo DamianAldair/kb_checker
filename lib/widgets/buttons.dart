@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 const keySize = 45.0;
+final shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0));
 const textStyle = TextStyle(fontWeight: FontWeight.bold);
 
 class KeyButton extends StatelessWidget {
@@ -24,6 +25,7 @@ class KeyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      shape: shape,
       child: Container(
         width: width ?? keySize,
         height: height ?? keySize,
@@ -65,6 +67,7 @@ class SpaceButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      shape: shape,
       child: SizedBox(
         width: width ?? keySize,
         height: keySize,
