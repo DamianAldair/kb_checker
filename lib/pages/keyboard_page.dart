@@ -16,6 +16,7 @@ class KeyboardPage extends StatelessWidget {
           ? const Color.fromARGB(255, 200, 200, 200)
           : null,
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(

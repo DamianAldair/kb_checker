@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 const keySize = 45.0;
 final shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0));
-const textStyle = TextStyle(fontWeight: FontWeight.bold);
 
 class KeyButton extends StatelessWidget {
   const KeyButton(
@@ -13,10 +12,12 @@ class KeyButton extends StatelessWidget {
     this.width,
     this.height,
     this.icon,
+    this.firstLevelNoBold = false,
   });
 
   final Widget? icon;
   final String? firstLevel;
+  final bool firstLevelNoBold;
   final String? secordLevel;
   final String? thirdLevel;
   final double? width;
@@ -24,6 +25,9 @@ class KeyButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textStyle = TextStyle(
+      fontWeight: firstLevelNoBold ? null : FontWeight.bold,
+    );
     return Card(
       shape: shape,
       child: Container(
@@ -35,7 +39,14 @@ class KeyButton extends StatelessWidget {
         ),
         child: icon ??
             (secordLevel == null && thirdLevel == null
-                ? Center(child: Text(firstLevel!, style: textStyle))
+                ? Center(
+                    child: Text(
+                      firstLevel!,
+                      style: textStyle.copyWith(
+                        fontSize: firstLevel!.length == 1 ? null : 12.0,
+                      ),
+                    ),
+                  )
                 : Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.end,
@@ -45,7 +56,12 @@ class KeyButton extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(secordLevel ?? '', style: textStyle),
-                          Text(firstLevel!, style: textStyle),
+                          Text(
+                            firstLevel!,
+                            style: textStyle.copyWith(
+                              fontSize: firstLevel!.length == 1 ? null : 12.0,
+                            ),
+                          ),
                         ],
                       ),
                       Text(thirdLevel ?? '', style: textStyle),
