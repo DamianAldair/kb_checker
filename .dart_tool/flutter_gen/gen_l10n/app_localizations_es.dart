@@ -5,5 +5,11 @@ class AppLocalizationsEs extends AppLocalizations {
   AppLocalizationsEs([String locale = 'es']) : super(locale);
 
   @override
+  String get about => 'Acerca de ...';
+
+  @override
   String get layout => 'Disposición';
+
+  @override
+  String get reset => 'Restablecer';
 }

@@ -93,11 +93,23 @@ abstract class AppLocalizations {
     Locale('es')
   ];
 
+  /// No description provided for @about.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get about;
+
   /// No description provided for @layout.
   ///
   /// In en, this message translates to:
   /// **'Layout'**
   String get layout;
+
+  /// No description provided for @reset.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset'**
+  String get reset;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
