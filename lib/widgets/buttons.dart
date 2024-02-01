@@ -91,3 +91,46 @@ class SpaceButton extends StatelessWidget {
     );
   }
 }
+
+class IsoEnterButton extends StatelessWidget {
+  const IsoEnterButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      shape: IsoEnterButtonShape(),
+      child: const SizedBox(
+        width: keySize,
+        height: keySize * 2 + 7,
+      ),
+    );
+  }
+}
+
+class IsoEnterButtonShape extends ShapeBorder {
+  @override
+  EdgeInsetsGeometry get dimensions => EdgeInsets.zero;
+
+  @override
+  Path getInnerPath(Rect rect, {TextDirection? textDirection}) =>
+      getOuterPath(rect);
+
+  @override
+  Path getOuterPath(Rect rect, {TextDirection? textDirection}) {
+    final path = Path();
+    path.moveTo(rect.right, rect.top);
+    path.lineTo(rect.right, rect.bottom);
+    path.lineTo(rect.left, rect.bottom);
+    path.lineTo(rect.left, rect.top + rect.height / 2);
+    path.lineTo(rect.left - rect.width / 2, rect.top + rect.height / 2);
+    path.lineTo(rect.left - rect.width / 2, rect.top);
+    path.close();
+    return path;
+  }
+
+  @override
+  void paint(Canvas canvas, Rect rect, {TextDirection? textDirection}) {}
+
+  @override
+  ShapeBorder scale(double t) => this;
+}
