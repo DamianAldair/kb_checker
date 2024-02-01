@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kb_checker/helpers/getters.dart';
 import 'package:kb_checker/widgets/buttons.dart';
 
 class FunctionSection extends StatelessWidget {
@@ -36,11 +37,11 @@ class AlphanumericSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Row(
+        const Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -61,12 +62,12 @@ class AlphanumericSection extends StatelessWidget {
               null,
               null,
               null,
-              icon: Icon(Icons.backspace, size: 15),
+              icon: Icon(Icons.backspace_outlined, size: 15),
               width: keySize * 2,
             ),
           ],
         ),
-        Row(
+        const Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -92,7 +93,7 @@ class AlphanumericSection extends StatelessWidget {
             KeyButton('}', ']', '`', width: keySize * 1.5),
           ],
         ),
-        Row(
+        const Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -123,7 +124,7 @@ class AlphanumericSection extends StatelessWidget {
             ),
           ],
         ),
-        Row(
+        const Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -158,32 +159,32 @@ class AlphanumericSection extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            KeyButton('Ctrl', null, null, width: keySize * 1.5),
+            const KeyButton('Ctrl', null, null, width: keySize * 1.5),
             KeyButton(
-              'Win',
               null,
               null,
-              // icon: Icon(Icons.keyboard_tab),
+              null,
+              icon: metaKey,
               width: keySize * 1.5,
             ),
-            KeyButton('Alt', null, null, width: keySize * 1.5),
-            SpaceButton(width: keySize * 5.55),
-            KeyButton('Alt', null, null, width: keySize * 1.5),
+            const KeyButton('Alt', null, null, width: keySize * 1.5),
+            const SpaceButton(width: keySize * 5.55),
+            const KeyButton('Alt', null, null, width: keySize * 1.5),
             KeyButton(
-              'Win',
               null,
               null,
-              // icon: Icon(Icons.keyboard_tab),
+              null,
+              icon: metaKey,
               width: keySize * 1.5,
             ),
-            KeyButton(
-              'Menú',
+            const KeyButton(
               null,
               null,
-              // icon: Icon(Icons.keyboard_tab),
+              null,
+              icon: Icon(Icons.list_alt, size: 20),
               width: keySize * 1.5,
             ),
-            KeyButton('Ctrl', null, null, width: keySize * 1.5),
+            const KeyButton('Ctrl', null, null, width: keySize * 1.5),
           ],
         ),
       ],
