@@ -102,6 +102,7 @@ class IsoEnterButton extends StatelessWidget {
       child: const SizedBox(
         width: keySize,
         height: keySize * 2 + 7,
+        child: Icon(Icons.subdirectory_arrow_left),
       ),
     );
   }
