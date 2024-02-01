@@ -3,10 +3,12 @@ import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
 import 'package:kb_checker/pages/keyboard_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:kb_checker/providers/layouts.dart';
 
 const String appTitle = 'KB Checker';
 
 void main() {
+  LayoutProvider().init();
   runApp(const MainApp());
   doWhenWindowReady(() {
     const size = Size(1230, 520);

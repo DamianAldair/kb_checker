@@ -1,6 +1,6 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:kb_checker/helpers/layouts.dart';
+import 'package:kb_checker/providers/layouts.dart';
 import 'package:kb_checker/widgets/sections.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -9,6 +9,7 @@ class KeyboardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final layout = LayoutProvider();
     const gap = SizedBox.square(dimension: 20.0);
 
     return Scaffold(
@@ -33,30 +34,48 @@ class KeyboardPage extends StatelessWidget {
                   ),
                 ),
                 gap,
-                DropdownButton(
-                  value: Layout.values.first,
-                  items: Layout.values
-                      .map(
-                        (l) => DropdownMenuItem(
-                          value: l,
-                          child: Text(l.name.toUpperCase()),
-                        ),
-                      )
-                      .toList(),
-                  onChanged: (_) {},
+                ValueListenableBuilder(
+                  valueListenable: layout.layoutNotifier,
+                  builder: (_, String lay, ___) {
+                    return DropdownButton(
+                      value: lay,
+                      items: layout.layouts
+                          .map(
+                            (l) => DropdownMenuItem(
+                              value: l,
+                              child: Text(l),
+                            ),
+                          )
+                          .toList(),
+                      onChanged: (String? value) {
+                        if (value != null) {
+                          layout.currentLayout = value;
+                        }
+                      },
+                    );
+                  },
                 ),
                 gap,
-                DropdownButton(
-                  value: locales.first,
-                  items: locales
-                      .map(
-                        (l) => DropdownMenuItem(
-                          value: l,
-                          child: Text(l.toLanguageTag()),
-                        ),
-                      )
-                      .toList(),
-                  onChanged: (_) {},
+                ValueListenableBuilder(
+                  valueListenable: layout.localeNotifier,
+                  builder: (_, Locale loc, ___) {
+                    return DropdownButton(
+                      value: loc,
+                      items: layout.locales
+                          .map(
+                            (l) => DropdownMenuItem(
+                              value: l,
+                              child: Text(l.toLanguageTag()),
+                            ),
+                          )
+                          .toList(),
+                      onChanged: (Locale? value) {
+                        if (value != null) {
+                          layout.currentLocale = value;
+                        }
+                      },
+                    );
+                  },
                 ),
                 const Spacer(),
                 ToggleButtons(
