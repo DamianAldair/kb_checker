@@ -43,7 +43,7 @@ class KeyButton extends StatelessWidget {
                     child: Text(
                       firstLevel!,
                       style: textStyle.copyWith(
-                        fontSize: firstLevel!.length == 1 ? null : 12.0,
+                        fontSize: firstLevel!.length == 1 ? null : 10.5,
                       ),
                     ),
                   )
@@ -59,7 +59,7 @@ class KeyButton extends StatelessWidget {
                           Text(
                             firstLevel!,
                             style: textStyle.copyWith(
-                              fontSize: firstLevel!.length == 1 ? null : 12.0,
+                              fontSize: firstLevel!.length == 1 ? null : 10.5,
                             ),
                           ),
                         ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kb_checker/helpers/getters.dart';
+import 'package:kb_checker/providers/layouts.dart';
 import 'package:kb_checker/widgets/buttons.dart';
 
 class FunctionSection extends StatelessWidget {
@@ -229,90 +230,96 @@ class CursorSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Row(
+    return ValueListenableBuilder(
+      valueListenable: LayoutProvider().localeNotifier,
+      builder: (_, Locale locale, ___) {
+        final langCode = locale.languageCode;
+        return Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            KeyButton(
-              'Ins',
-              null,
-              null,
-              firstLevelNoBold: true,
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                KeyButton(
+                  getKeyInsert(langCode),
+                  null,
+                  null,
+                  firstLevelNoBold: true,
+                ),
+                KeyButton(
+                  getKeyHome(langCode),
+                  null,
+                  null,
+                  firstLevelNoBold: true,
+                ),
+                KeyButton(
+                  getKeyPgUp(langCode),
+                  null,
+                  null,
+                  firstLevelNoBold: true,
+                ),
+              ],
             ),
-            KeyButton(
-              'Inicio',
-              null,
-              null,
-              firstLevelNoBold: true,
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                KeyButton(
+                  getKeyDelete(langCode),
+                  null,
+                  null,
+                  firstLevelNoBold: true,
+                ),
+                KeyButton(
+                  getKeyEnd(langCode),
+                  null,
+                  null,
+                  firstLevelNoBold: true,
+                ),
+                KeyButton(
+                  getKeyPgDn(langCode),
+                  null,
+                  null,
+                  firstLevelNoBold: true,
+                ),
+              ],
             ),
-            KeyButton(
-              'Re Pág',
+            const SizedBox(height: keySize + 7),
+            const KeyButton(
               null,
               null,
-              firstLevelNoBold: true,
+              null,
+              icon: Icon(Icons.keyboard_arrow_up),
+            ),
+            const Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                KeyButton(
+                  null,
+                  null,
+                  null,
+                  icon: Icon(Icons.keyboard_arrow_left),
+                ),
+                KeyButton(
+                  null,
+                  null,
+                  null,
+                  icon: Icon(Icons.keyboard_arrow_down),
+                ),
+                KeyButton(
+                  null,
+                  null,
+                  null,
+                  icon: Icon(Icons.keyboard_arrow_right),
+                ),
+              ],
             ),
           ],
-        ),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            KeyButton(
-              'Supr',
-              null,
-              null,
-              firstLevelNoBold: true,
-            ),
-            KeyButton(
-              'Fin',
-              null,
-              null,
-              firstLevelNoBold: true,
-            ),
-            KeyButton(
-              'Av Pág',
-              null,
-              null,
-              firstLevelNoBold: true,
-            ),
-          ],
-        ),
-        SizedBox(height: keySize + 7),
-        KeyButton(
-          null,
-          null,
-          null,
-          icon: Icon(Icons.keyboard_arrow_up),
-        ),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            KeyButton(
-              null,
-              null,
-              null,
-              icon: Icon(Icons.keyboard_arrow_left),
-            ),
-            KeyButton(
-              null,
-              null,
-              null,
-              icon: Icon(Icons.keyboard_arrow_down),
-            ),
-            KeyButton(
-              null,
-              null,
-              null,
-              icon: Icon(Icons.keyboard_arrow_right),
-            ),
-          ],
-        ),
-      ],
+        );
+      },
     );
   }
 }
@@ -322,130 +329,136 @@ class NumpadSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        SizedBox(height: keySize + 7),
-        Row(
+    return ValueListenableBuilder(
+      valueListenable: LayoutProvider().localeNotifier,
+      builder: (_, Locale locale, ___) {
+        final langCode = locale.languageCode;
+        return Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            KeyButton(
-              'Num',
-              null,
-              null,
-              icon: Icon(Icons.looks_one_outlined, size: 20),
-            ),
-            KeyButton('/', null, null),
-            KeyButton('*', null, null),
-            KeyButton('-', null, null),
-          ],
-        ),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Column(
+            const SizedBox(height: keySize + 7),
+            const Row(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    KeyButton(
-                      'Inicio',
-                      '7',
-                      null,
-                      firstLevelNoBold: true,
-                    ),
-                    KeyButton('↑', '8', null),
-                    KeyButton(
-                      'RePg',
-                      '9',
-                      null,
-                      firstLevelNoBold: true,
-                    ),
-                  ],
+                KeyButton(
+                  'Num',
+                  null,
+                  null,
+                  icon: Icon(Icons.looks_one_outlined, size: 20),
                 ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    KeyButton('←', '4', null),
-                    KeyButton('', '5', null),
-                    KeyButton('→', '6', null),
-                  ],
-                ),
+                KeyButton('/', null, null),
+                KeyButton('*', null, null),
+                KeyButton('-', null, null),
               ],
             ),
-            KeyButton(
-              '+',
-              null,
-              null,
-              height: keySize * 2 + 7,
-            ),
-          ],
-        ),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Column(
+            Row(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Row(
+                Column(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    KeyButton(
-                      'Fin',
-                      '1',
-                      null,
-                      firstLevelNoBold: true,
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        KeyButton(
+                          getKeyHome(langCode),
+                          '7',
+                          null,
+                          firstLevelNoBold: true,
+                        ),
+                        const KeyButton('↑', '8', null),
+                        KeyButton(
+                          getKeyPgUp(langCode),
+                          '9',
+                          null,
+                          firstLevelNoBold: true,
+                        ),
+                      ],
                     ),
-                    KeyButton('↓', '2', null),
-                    KeyButton(
-                      'AvPg',
-                      '3',
-                      null,
-                      firstLevelNoBold: true,
+                    const Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        KeyButton('←', '4', null),
+                        KeyButton('', '5', null),
+                        KeyButton('→', '6', null),
+                      ],
                     ),
                   ],
                 ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    KeyButton(
-                      'Ins',
-                      '0',
-                      null,
-                      firstLevelNoBold: true,
-                      width: keySize * 2 + 7,
-                    ),
-                    KeyButton(
-                      'Supr',
-                      '.',
-                      null,
-                      firstLevelNoBold: true,
-                    ),
-                  ],
+                const KeyButton(
+                  '+',
+                  null,
+                  null,
+                  height: keySize * 2 + 7,
                 ),
               ],
             ),
-            KeyButton(
-              null,
-              null,
-              null,
-              icon: Icon(Icons.subdirectory_arrow_left),
-              height: keySize * 2 + 7,
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        KeyButton(
+                          getKeyEnd(langCode),
+                          '1',
+                          null,
+                          firstLevelNoBold: true,
+                        ),
+                        const KeyButton('↓', '2', null),
+                        KeyButton(
+                          getKeyPgDn(langCode),
+                          '3',
+                          null,
+                          firstLevelNoBold: true,
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        KeyButton(
+                          getKeyInsert(langCode),
+                          '0',
+                          null,
+                          firstLevelNoBold: true,
+                          width: keySize * 2 + 7,
+                        ),
+                        KeyButton(
+                          getKeyDelete(langCode),
+                          '.',
+                          null,
+                          firstLevelNoBold: true,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const KeyButton(
+                  null,
+                  null,
+                  null,
+                  icon: Icon(Icons.subdirectory_arrow_left),
+                  height: keySize * 2 + 7,
+                ),
+              ],
             ),
           ],
-        ),
-      ],
+        );
+      },
     );
   }
 }

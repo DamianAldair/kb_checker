@@ -48,3 +48,32 @@ class LayoutProvider {
     }
   }
 }
+
+String getKeyInsert(String langCode) => switch (langCode.toLowerCase()) {
+      _ => 'Ins',
+    };
+
+String getKeyDelete(String langCode) => switch (langCode.toLowerCase()) {
+      'es' => 'Supr',
+      _ => 'Del',
+    };
+
+String getKeyHome(String langCode) => switch (langCode.toLowerCase()) {
+      'es' => 'Inicio',
+      _ => 'Home',
+    };
+
+String getKeyEnd(String langCode) => switch (langCode.toLowerCase()) {
+      'es' => 'Fin',
+      _ => 'End',
+    };
+
+String getKeyPgUp(String langCode) => switch (langCode.toLowerCase()) {
+      'es' => 'RePg',
+      _ => 'PgUp',
+    };
+
+String getKeyPgDn(String langCode) => switch (langCode.toLowerCase()) {
+      'es' => 'AvPg',
+      _ => 'PgDn',
+    };
