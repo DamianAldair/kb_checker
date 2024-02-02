@@ -55,7 +55,12 @@ class KeyButton extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(secordLevel ?? '', style: textStyle),
+                          Text(
+                            secordLevel ?? '',
+                            style: textStyle.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                           Text(
                             firstLevel!,
                             style: textStyle.copyWith(
@@ -118,6 +123,7 @@ class IsoEnterButtonShape extends ShapeBorder {
 
   @override
   Path getOuterPath(Rect rect, {TextDirection? textDirection}) {
+    // TODO: Fix shape
     final path = Path();
     path.moveTo(rect.right, rect.top);
     path.lineTo(rect.right, rect.bottom);
