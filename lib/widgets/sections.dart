@@ -49,8 +49,6 @@ class AlphanumericSection extends StatelessWidget {
           return Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
-            // TODO: quitar cross start
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Row(
                 mainAxisSize: MainAxisSize.min,
@@ -101,8 +99,10 @@ class AlphanumericSection extends StatelessWidget {
                               children: [
                                 Transform.flip(
                                   flipX: true,
-                                  child:
-                                      const Icon(Icons.keyboard_tab, size: 15),
+                                  child: const Icon(
+                                    Icons.keyboard_tab,
+                                    size: 15,
+                                  ),
                                 ),
                                 const Icon(Icons.keyboard_tab, size: 15),
                               ],
