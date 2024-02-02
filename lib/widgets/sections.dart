@@ -427,6 +427,8 @@ class SystemSection extends StatelessWidget {
           null,
           null,
           icon: Icon(Icons.unfold_more, size: 15),
+          physicalId: 458823,
+          logicalId: 4294967564,
         ),
         KeyButton(
           null,
