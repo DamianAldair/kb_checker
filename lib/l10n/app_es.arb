@@ -1,5 +1,10 @@
 {
     "about": "Acerca de ...",
+    "id": "ID",
+    "debugName": "Nombre",
+    "keyLabel": "Etiqueta de tecla",
     "layout": "Disposición",
+    "logicalKeyboardKey": "Tecla lógica",
+    "physicalKeyboardKey": "Tecla física",
     "reset": "Restablecer"
 }

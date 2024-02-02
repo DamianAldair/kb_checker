@@ -99,11 +99,41 @@ abstract class AppLocalizations {
   /// **'About'**
   String get about;
 
+  /// No description provided for @id.
+  ///
+  /// In en, this message translates to:
+  /// **'ID'**
+  String get id;
+
+  /// No description provided for @debugName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get debugName;
+
+  /// No description provided for @keyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Key label'**
+  String get keyLabel;
+
   /// No description provided for @layout.
   ///
   /// In en, this message translates to:
   /// **'Layout'**
   String get layout;
+
+  /// No description provided for @logicalKeyboardKey.
+  ///
+  /// In en, this message translates to:
+  /// **'Logical keyboard key'**
+  String get logicalKeyboardKey;
+
+  /// No description provided for @physicalKeyboardKey.
+  ///
+  /// In en, this message translates to:
+  /// **'Physical keyboard key'**
+  String get physicalKeyboardKey;
 
   /// No description provided for @reset.
   ///

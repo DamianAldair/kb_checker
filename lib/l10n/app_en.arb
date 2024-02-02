@@ -1,5 +1,10 @@
 {
     "about": "About",
+    "id": "ID",
+    "debugName": "Name",
+    "keyLabel": "Key label",
     "layout": "Layout",
+    "logicalKeyboardKey": "Logical keyboard key",
+    "physicalKeyboardKey": "Physical keyboard key",
     "reset": "Reset"
 }

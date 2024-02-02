@@ -1,6 +1,8 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:kb_checker/helpers/exetnsions.dart';
+import 'package:kb_checker/providers/key_listener.dart';
 import 'package:kb_checker/providers/layouts.dart';
 import 'package:kb_checker/widgets/sections.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -13,11 +15,10 @@ class KeyboardPage extends StatefulWidget {
 }
 
 class _KeyboardPageState extends State<KeyboardPage> {
+  final keyNotifier = KeyListenerProvider().keyNotifier;
+
   bool _onKey(KeyEvent event) {
-    print(event.physicalKey);
-    print(event.logicalKey);
-    print(event.character);
-    print(event.synthesized);
+    keyNotifier.value = event;
     return false;
   }
 
@@ -175,20 +176,25 @@ class _KeyboardPageState extends State<KeyboardPage> {
               ),
               child: Row(
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('PhysicalKeyboardKey#xxxxx'),
-                        Text('LogicalKeyboardKey#xxxxx'),
-                      ],
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: ValueListenableBuilder(
+                      valueListenable: keyNotifier,
+                      builder: (_, KeyEvent? event, ___) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(event?.physicalKey.getInfo(context) ?? ''),
+                            Text(event?.logicalKey.getInfo(context) ?? ''),
+                          ],
+                        );
+                      },
                     ),
                   ),
                   const Spacer(),
                   ElevatedButton(
                     child: Text(AppLocalizations.of(context).reset),
-                    onPressed: () {},
+                    onPressed: () => keyNotifier.value = null,
                   ),
                 ],
               ),

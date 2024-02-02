@@ -8,7 +8,22 @@ class AppLocalizationsEs extends AppLocalizations {
   String get about => 'Acerca de ...';
 
   @override
+  String get id => 'ID';
+
+  @override
+  String get debugName => 'Nombre';
+
+  @override
+  String get keyLabel => 'Etiqueta de tecla';
+
+  @override
   String get layout => 'Disposición';
+
+  @override
+  String get logicalKeyboardKey => 'Tecla lógica';
+
+  @override
+  String get physicalKeyboardKey => 'Tecla física';
 
   @override
   String get reset => 'Restablecer';
