@@ -91,11 +91,22 @@ class AlphanumericSection extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          const KeyButton(
+                          KeyButton(
                             null,
                             null,
                             null,
-                            icon: Icon(Icons.keyboard_tab, size: 15),
+                            icon: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Transform.flip(
+                                  flipX: true,
+                                  child:
+                                      const Icon(Icons.keyboard_tab, size: 15),
+                                ),
+                                const Icon(Icons.keyboard_tab, size: 15),
+                              ],
+                            ),
                             width: keySize * 1.5,
                           ),
                           const KeyButton('Q', null, null),
