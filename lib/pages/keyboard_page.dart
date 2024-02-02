@@ -184,8 +184,40 @@ class _KeyboardPageState extends State<KeyboardPage> {
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(event?.physicalKey.getInfo(context) ?? ''),
-                            Text(event?.logicalKey.getInfo(context) ?? ''),
+                            Text.rich(
+                              TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: event == null
+                                        ? ''
+                                        : '${AppLocalizations.of(context).physicalKeyboardKey}: ',
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  TextSpan(
+                                    text: event?.physicalKey.getInfo(context) ??
+                                        '',
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Text.rich(
+                              TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: event == null
+                                        ? ''
+                                        : '${AppLocalizations.of(context).logicalKeyboardKey}: ',
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  TextSpan(
+                                    text: event?.logicalKey.getInfo(context) ??
+                                        '',
+                                  ),
+                                ],
+                              ),
+                            ),
                           ],
                         );
                       },
