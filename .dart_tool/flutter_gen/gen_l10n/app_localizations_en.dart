@@ -27,4 +27,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get reset => 'Reset';
+
+  @override
+  String get checkerMode => 'Checker mode';
 }

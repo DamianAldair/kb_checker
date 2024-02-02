@@ -140,6 +140,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Reset'**
   String get reset;
+
+  /// No description provided for @checkerMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Checker mode'**
+  String get checkerMode;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

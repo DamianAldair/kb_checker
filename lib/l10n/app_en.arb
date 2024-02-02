@@ -1,7 +1,8 @@
 {
     "about": "About",
-    "id": "ID",
+    "checkerMode": "Checker mode",
     "debugName": "Name",
+    "id": "ID",
     "keyLabel": "Key label",
     "layout": "Layout",
     "logicalKeyboardKey": "Logical keyboard key",

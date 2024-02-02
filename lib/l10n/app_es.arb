@@ -1,7 +1,8 @@
 {
     "about": "Acerca de ...",
-    "id": "ID",
+    "checkerMode": "Modo de verificación",
     "debugName": "Nombre",
+    "id": "ID",
     "keyLabel": "Etiqueta de tecla",
     "layout": "Disposición",
     "logicalKeyboardKey": "Tecla lógica",

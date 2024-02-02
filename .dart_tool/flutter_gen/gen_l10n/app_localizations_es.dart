@@ -27,4 +27,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get reset => 'Restablecer';
+
+  @override
+  String get checkerMode => 'Modo de verificación';
 }

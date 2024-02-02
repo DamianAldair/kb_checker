@@ -37,6 +37,7 @@ class _KeyboardPageState extends State<KeyboardPage> {
   @override
   Widget build(BuildContext context) {
     final layout = LayoutProvider();
+    final keyListener = KeyListenerProvider();
     const gap = SizedBox.square(dimension: 20.0);
 
     return Scaffold(
@@ -103,6 +104,45 @@ class _KeyboardPageState extends State<KeyboardPage> {
                             layout.currentLocale = value;
                           }
                         },
+                      );
+                    },
+                  ),
+                  gap,
+                  gap,
+                  Text(
+                    '${AppLocalizations.of(context).checkerMode}:',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18.0,
+                    ),
+                  ),
+                  gap,
+                  StatefulBuilder(
+                    builder: (_, setInnerState) {
+                      return ToggleButtons(
+                        borderRadius: BorderRadius.circular(10.0),
+                        isSelected: [
+                          keyListener.mode == KeyTesterMode.phiscal,
+                          keyListener.mode == KeyTesterMode.logical,
+                        ],
+                        onPressed: (i) => setInnerState(() {
+                          final mode = KeyTesterMode.values[i];
+                          keyListener.mode = mode;
+                        }),
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 10.0),
+                            child: Text(AppLocalizations.of(context)
+                                .physicalKeyboardKey),
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 10.0),
+                            child: Text(AppLocalizations.of(context)
+                                .logicalKeyboardKey),
+                          ),
+                        ],
                       );
                     },
                   ),
