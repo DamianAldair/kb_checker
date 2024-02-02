@@ -11,7 +11,7 @@ void main() {
   LayoutProvider().init();
   runApp(const MainApp());
   doWhenWindowReady(() {
-    const size = Size(1230, 520);
+    const size = Size(1230, 550);
     appWindow.minSize = size;
     appWindow.size = size;
     appWindow.alignment = Alignment.center;

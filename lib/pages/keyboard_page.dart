@@ -1,11 +1,37 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:kb_checker/providers/layouts.dart';
 import 'package:kb_checker/widgets/sections.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class KeyboardPage extends StatelessWidget {
+class KeyboardPage extends StatefulWidget {
   const KeyboardPage({super.key});
+
+  @override
+  State<KeyboardPage> createState() => _KeyboardPageState();
+}
+
+class _KeyboardPageState extends State<KeyboardPage> {
+  bool _onKey(KeyEvent event) {
+    print(event.physicalKey);
+    print(event.logicalKey);
+    print(event.character);
+    print(event.synthesized);
+    return false;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    ServicesBinding.instance.keyboard.addHandler(_onKey);
+  }
+
+  @override
+  void dispose() {
+    ServicesBinding.instance.keyboard.removeHandler(_onKey);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,146 +42,159 @@ class KeyboardPage extends StatelessWidget {
       backgroundColor: AdaptiveTheme.of(context).brightness == Brightness.light
           ? const Color.fromARGB(255, 200, 200, 200)
           : null,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20.0,
-              vertical: 10.0,
-            ),
-            child: Row(
-              children: [
-                Text(
-                  '${AppLocalizations.of(context).layout}:',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18.0,
+      body: Focus(
+        autofocus: true,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20.0,
+                vertical: 10.0,
+              ),
+              child: Row(
+                children: [
+                  Text(
+                    '${AppLocalizations.of(context).layout}:',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18.0,
+                    ),
                   ),
-                ),
-                gap,
-                ValueListenableBuilder(
-                  valueListenable: layout.layoutNotifier,
-                  builder: (_, String lay, ___) {
-                    return DropdownButton(
-                      value: lay,
-                      items: layout.layouts
-                          .map(
-                            (l) => DropdownMenuItem(
-                              value: l,
-                              child: Text(l),
-                            ),
-                          )
-                          .toList(),
-                      onChanged: (String? value) {
-                        if (value != null) {
-                          layout.currentLayout = value;
-                        }
-                      },
-                    );
-                  },
-                ),
-                gap,
-                ValueListenableBuilder(
-                  valueListenable: layout.localeNotifier,
-                  builder: (_, Locale loc, ___) {
-                    return DropdownButton(
-                      value: loc,
-                      items: layout.locales
-                          .map(
-                            (l) => DropdownMenuItem(
-                              value: l,
-                              child: Text(l.toLanguageTag()),
-                            ),
-                          )
-                          .toList(),
-                      onChanged: (Locale? value) {
-                        if (value != null) {
-                          layout.currentLocale = value;
-                        }
-                      },
-                    );
-                  },
-                ),
-                const Spacer(),
-                ToggleButtons(
-                  borderRadius: BorderRadius.circular(10.0),
-                  isSelected: [
-                    AdaptiveTheme.of(context).mode.isSystem,
-                    AdaptiveTheme.of(context).mode.isLight,
-                    AdaptiveTheme.of(context).mode.isDark,
-                  ],
-                  onPressed: (i) => switch (i) {
-                    1 => AdaptiveTheme.of(context).setLight(),
-                    2 => AdaptiveTheme.of(context).setDark(),
-                    _ => AdaptiveTheme.of(context).setSystem(),
-                  },
-                  children: const [
-                    Icon(Icons.brightness_auto),
-                    Icon(Icons.brightness_7),
-                    Icon(Icons.brightness_2),
-                  ],
-                ),
-                gap,
-                gap,
-                IconButton(
-                  icon: const Icon(Icons.info_outline),
-                  tooltip: AppLocalizations.of(context).about,
-                  onPressed: () {},
-                ),
-              ],
+                  gap,
+                  ValueListenableBuilder(
+                    valueListenable: layout.layoutNotifier,
+                    builder: (_, String lay, ___) {
+                      return DropdownButton(
+                        value: lay,
+                        items: layout.layouts
+                            .map(
+                              (l) => DropdownMenuItem(
+                                value: l,
+                                child: Text(l),
+                              ),
+                            )
+                            .toList(),
+                        onChanged: (String? value) {
+                          if (value != null) {
+                            layout.currentLayout = value;
+                          }
+                        },
+                      );
+                    },
+                  ),
+                  gap,
+                  ValueListenableBuilder(
+                    valueListenable: layout.localeNotifier,
+                    builder: (_, Locale loc, ___) {
+                      return DropdownButton(
+                        value: loc,
+                        items: layout.locales
+                            .map(
+                              (l) => DropdownMenuItem(
+                                value: l,
+                                child: Text(l.toLanguageTag()),
+                              ),
+                            )
+                            .toList(),
+                        onChanged: (Locale? value) {
+                          if (value != null) {
+                            layout.currentLocale = value;
+                          }
+                        },
+                      );
+                    },
+                  ),
+                  const Spacer(),
+                  ToggleButtons(
+                    borderRadius: BorderRadius.circular(10.0),
+                    isSelected: [
+                      AdaptiveTheme.of(context).mode.isSystem,
+                      AdaptiveTheme.of(context).mode.isLight,
+                      AdaptiveTheme.of(context).mode.isDark,
+                    ],
+                    onPressed: (i) => switch (i) {
+                      1 => AdaptiveTheme.of(context).setLight(),
+                      2 => AdaptiveTheme.of(context).setDark(),
+                      _ => AdaptiveTheme.of(context).setSystem(),
+                    },
+                    children: const [
+                      Icon(Icons.brightness_auto),
+                      Icon(Icons.brightness_7),
+                      Icon(Icons.brightness_2),
+                    ],
+                  ),
+                  gap,
+                  gap,
+                  IconButton(
+                    icon: const Icon(Icons.info_outline),
+                    tooltip: AppLocalizations.of(context).about,
+                    onPressed: () {},
+                  ),
+                ],
+              ),
             ),
-          ),
-          const Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  FunctionSection(),
-                  SizedBox.square(dimension: 20.0),
-                  AlphanumericSection(),
-                ],
-              ),
-              SizedBox.square(dimension: 20.0),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SystemSection(),
-                  SizedBox.square(dimension: 20.0),
-                  CursorSection(),
-                ],
-              ),
-              SizedBox.square(dimension: 20.0),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox.square(dimension: 20.0),
-                  NumpadSection(),
-                ],
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20.0,
-              vertical: 20.0,
-            ),
-            child: Row(
+            const Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                const Spacer(),
-                ElevatedButton(
-                  child: Text(AppLocalizations.of(context).reset),
-                  onPressed: () {},
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    FunctionSection(),
+                    SizedBox.square(dimension: 20.0),
+                    AlphanumericSection(),
+                  ],
+                ),
+                SizedBox.square(dimension: 20.0),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SystemSection(),
+                    SizedBox.square(dimension: 20.0),
+                    CursorSection(),
+                  ],
+                ),
+                SizedBox.square(dimension: 20.0),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox.square(dimension: 20.0),
+                    NumpadSection(),
+                  ],
                 ),
               ],
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20.0,
+                vertical: 20.0,
+              ),
+              child: Row(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('PhysicalKeyboardKey#xxxxx'),
+                        Text('LogicalKeyboardKey#xxxxx'),
+                      ],
+                    ),
+                  ),
+                  const Spacer(),
+                  ElevatedButton(
+                    child: Text(AppLocalizations.of(context).reset),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
