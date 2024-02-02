@@ -672,6 +672,8 @@ class SystemSection extends StatelessWidget {
           null,
           null,
           icon: Icon(Icons.screenshot_monitor, size: 15),
+          physicalId: 458822,
+          logicalId: -1,
         ),
         KeyButton(
           null,
