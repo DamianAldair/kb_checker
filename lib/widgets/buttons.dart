@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 const keySize = 45.0;
-final shape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0));
+const radiusValue = 5.0;
+const radius = Radius.circular(radiusValue);
+const shape = RoundedRectangleBorder(borderRadius: BorderRadius.all(radius));
 
 class KeyButton extends StatelessWidget {
   const KeyButton(
@@ -102,18 +104,26 @@ class IsoEnterButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: IsoEnterButtonShape(),
-      child: const SizedBox(
-        width: keySize,
-        height: keySize * 2 + 7,
-        child: Icon(Icons.subdirectory_arrow_left),
+    const padding = 4.0;
+    return const Padding(
+      padding: EdgeInsets.only(left: padding),
+      child: Card(
+        shape: IsoEnterButtonShape(padding),
+        child: SizedBox(
+          width: keySize,
+          height: keySize * 2 + 7,
+          child: Icon(Icons.subdirectory_arrow_left),
+        ),
       ),
     );
   }
 }
 
 class IsoEnterButtonShape extends ShapeBorder {
+  const IsoEnterButtonShape(this.appliedPadding);
+
+  final double appliedPadding;
+
   @override
   EdgeInsetsGeometry get dimensions => EdgeInsets.zero;
 
@@ -123,14 +133,51 @@ class IsoEnterButtonShape extends ShapeBorder {
 
   @override
   Path getOuterPath(Rect rect, {TextDirection? textDirection}) {
-    // TODO: Fix shape
     final path = Path();
-    path.moveTo(rect.right, rect.top);
-    path.lineTo(rect.right, rect.bottom);
-    path.lineTo(rect.left, rect.bottom);
-    path.lineTo(rect.left, rect.top + rect.height / 2);
-    path.lineTo(rect.left - rect.width / 2, rect.top + rect.height / 2);
-    path.lineTo(rect.left - rect.width / 2, rect.top);
+    path.moveTo(rect.left, rect.top);
+    path.lineTo(rect.right - radiusValue, rect.top);
+    path.arcToPoint(
+      Offset(rect.right, rect.top + radiusValue),
+      radius: radius,
+    );
+    path.lineTo(rect.right, rect.bottom - radiusValue);
+    path.arcToPoint(
+      Offset(rect.right - radiusValue, rect.bottom),
+      radius: radius,
+    );
+    path.lineTo(-appliedPadding + rect.left + radiusValue, rect.bottom);
+    path.arcToPoint(
+      Offset(-appliedPadding + rect.left, rect.bottom - radiusValue),
+      radius: radius,
+    );
+    path.lineTo(
+      -appliedPadding + rect.left,
+      -appliedPadding / 2 + rect.top + rect.height / 2 + radiusValue,
+    );
+    path.arcToPoint(
+      Offset(
+        -appliedPadding + rect.left - radiusValue,
+        -appliedPadding + rect.top + rect.height / 2,
+      ),
+      radius: radius,
+      clockwise: false,
+    );
+    path.lineTo(
+      -appliedPadding / 2 + rect.left - rect.width / 2 + radiusValue,
+      -appliedPadding + rect.top + rect.height / 2,
+    );
+    path.arcToPoint(
+      Offset(
+        rect.left - rect.width / 2,
+        -appliedPadding + rect.top + rect.height / 2 - radiusValue,
+      ),
+      radius: radius,
+    );
+    path.lineTo(rect.left - rect.width / 2, rect.top + radiusValue);
+    path.arcToPoint(
+      Offset(rect.left - rect.width / 2 + radiusValue, rect.top),
+      radius: radius,
+    );
     path.close();
     return path;
   }
