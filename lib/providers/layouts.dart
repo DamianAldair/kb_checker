@@ -192,6 +192,13 @@ String? getKeyE(Locale locale) => switch (locale.countryCode?.toUpperCase()) {
       _ => ('/', '?'),
     };
 
+String getKeyLeftAlt(Locale locale) =>
+    switch (locale.countryCode?.toUpperCase()) {
+      'ES' => 'Alt Gr',
+      'LA' => 'Alt Gr',
+      _ => 'Alt',
+    };
+
 String getKeyInsert(String langCode) => switch (langCode.toLowerCase()) {
       _ => 'Ins',
     };

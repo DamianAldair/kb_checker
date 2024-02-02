@@ -614,8 +614,8 @@ class AlphanumericSection extends StatelessWidget {
                     logicalId: 8589934852,
                   ),
                   const SpaceButton(width: keySize * 5.55),
-                  const KeyButton(
-                    'Alt',
+                  KeyButton(
+                    getKeyLeftAlt(locale),
                     null,
                     null,
                     width: keySize * 1.5,
