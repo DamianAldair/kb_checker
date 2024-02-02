@@ -1,7 +1,7 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:kb_checker/helpers/exetnsions.dart';
+import 'package:kb_checker/helpers/extensions.dart';
 import 'package:kb_checker/providers/key_listener.dart';
 import 'package:kb_checker/providers/layouts.dart';
 import 'package:kb_checker/widgets/sections.dart';
@@ -107,45 +107,45 @@ class _KeyboardPageState extends State<KeyboardPage> {
                       );
                     },
                   ),
-                  gap,
-                  gap,
-                  Text(
-                    '${AppLocalizations.of(context).checkerMode}:',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.0,
-                    ),
-                  ),
-                  gap,
-                  StatefulBuilder(
-                    builder: (_, setInnerState) {
-                      return ToggleButtons(
-                        borderRadius: BorderRadius.circular(10.0),
-                        isSelected: [
-                          keyListener.mode == KeyTesterMode.phiscal,
-                          keyListener.mode == KeyTesterMode.logical,
-                        ],
-                        onPressed: (i) => setInnerState(() {
-                          final mode = KeyTesterMode.values[i];
-                          keyListener.mode = mode;
-                        }),
-                        children: [
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 10.0),
-                            child: Text(AppLocalizations.of(context)
-                                .physicalKeyboardKey),
-                          ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 10.0),
-                            child: Text(AppLocalizations.of(context)
-                                .logicalKeyboardKey),
-                          ),
-                        ],
-                      );
-                    },
-                  ),
+                  // gap,
+                  // gap,
+                  // Text(
+                  //   '${AppLocalizations.of(context).checkerMode}:',
+                  //   style: const TextStyle(
+                  //     fontWeight: FontWeight.bold,
+                  //     fontSize: 18.0,
+                  //   ),
+                  // ),
+                  // gap,
+                  // StatefulBuilder(
+                  //   builder: (_, setInnerState) {
+                  //     return ToggleButtons(
+                  //       borderRadius: BorderRadius.circular(10.0),
+                  //       isSelected: [
+                  //         keyListener.mode == KeyTesterMode.phisical,
+                  //         keyListener.mode == KeyTesterMode.logical,
+                  //       ],
+                  //       onPressed: (i) => setInnerState(() {
+                  //         final mode = KeyTesterMode.values[i];
+                  //         keyListener.mode = mode;
+                  //       }),
+                  //       children: [
+                  //         Padding(
+                  //           padding:
+                  //               const EdgeInsets.symmetric(horizontal: 10.0),
+                  //           child: Text(AppLocalizations.of(context)
+                  //               .physicalKeyboardKey),
+                  //         ),
+                  //         Padding(
+                  //           padding:
+                  //               const EdgeInsets.symmetric(horizontal: 10.0),
+                  //           child: Text(AppLocalizations.of(context)
+                  //               .logicalKeyboardKey),
+                  //         ),
+                  //       ],
+                  //     );
+                  //   },
+                  // ),
                   const Spacer(),
                   ToggleButtons(
                     borderRadius: BorderRadius.circular(10.0),
@@ -266,7 +266,10 @@ class _KeyboardPageState extends State<KeyboardPage> {
                   const Spacer(),
                   ElevatedButton(
                     child: Text(AppLocalizations.of(context).reset),
-                    onPressed: () => keyNotifier.value = null,
+                    onPressed: () {
+                      keyNotifier.value = null;
+                      keyListener.clear();
+                    },
                   ),
                 ],
               ),

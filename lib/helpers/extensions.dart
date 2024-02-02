@@ -1,6 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:kb_checker/providers/key_listener.dart';
+
+extension KeyEventX on KeyEvent {
+  int get id => switch (KeyListenerProvider().mode) {
+        KeyTesterMode.phisical => physicalKey.usbHidUsage,
+        KeyTesterMode.logical => logicalKey.keyId,
+      };
+
+  bool isPassed() {
+    final keyListener = KeyListenerProvider();
+    return keyListener.physicalPassedKeys.contains(id) ||
+        keyListener.logicalPassedKeys.contains(id);
+  }
+}
 
 extension PhysicalKeyboardKeyX on PhysicalKeyboardKey {
   String getInfo(BuildContext context) {

@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:kb_checker/helpers/extensions.dart';
+import 'package:kb_checker/providers/key_listener.dart';
 
 const keySize = 45.0;
 const radiusValue = 5.0;
 const radius = Radius.circular(radiusValue);
 const shape = RoundedRectangleBorder(borderRadius: BorderRadius.all(radius));
+
+final colorWhenPressed = Colors.yellow.withOpacity(0.5);
+final colorWhenPassed = Colors.green.withOpacity(0.5);
 
 class KeyButton extends StatelessWidget {
   const KeyButton(
@@ -16,6 +22,8 @@ class KeyButton extends StatelessWidget {
     this.icon,
     this.firstLevelNoBold = false,
     this.firstLevelCentered = false,
+    this.physicalId,
+    this.logicalId,
   });
 
   final Widget? icon;
@@ -26,67 +34,92 @@ class KeyButton extends StatelessWidget {
   final String? thirdLevel;
   final double? width;
   final double? height;
+  final int? physicalId;
+  final int? logicalId;
 
   @override
   Widget build(BuildContext context) {
+    final keyListener = KeyListenerProvider();
+    final id = switch (keyListener.mode) {
+      KeyTesterMode.phisical => physicalId ?? -1,
+      KeyTesterMode.logical => logicalId ?? -1,
+    };
+
     final textStyle = TextStyle(
       fontWeight: firstLevelNoBold ? null : FontWeight.bold,
     );
-    return Card(
-      shape: shape,
-      child: Container(
-        width: width ?? keySize,
-        height: height ?? keySize,
-        padding: const EdgeInsets.symmetric(
-          horizontal: 8.0,
-          vertical: 3.0,
-        ),
-        child: icon ??
-            (firstLevelCentered || (secordLevel == null && thirdLevel == null)
-                ? Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Center(
-                        child: Text(
-                          firstLevel!,
-                          style: textStyle.copyWith(
-                            fontSize: firstLevel!.length == 1 ? null : 10.5,
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        bottom: -2.0,
-                        right: -2.0,
-                        child: Text(thirdLevel ?? '', style: textStyle),
-                      ),
-                    ],
-                  )
-                : Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+    return ValueListenableBuilder(
+      valueListenable: keyListener.keyNotifier,
+      builder: (_, KeyEvent? event, ___) {
+        Color? color = keyListener.isPassed(id) ? colorWhenPassed : null;
+        if (event?.id == id) {
+          if (event is KeyDownEvent) {
+            color = colorWhenPressed;
+          } else if (event is KeyUpEvent) {
+            keyListener.addToPassedKeys(event);
+            color = colorWhenPassed;
+          }
+        }
+        return Card(
+          color: color,
+          shape: shape,
+          child: Container(
+            width: width ?? keySize,
+            height: height ?? keySize,
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8.0,
+              vertical: 3.0,
+            ),
+            child: icon ??
+                (firstLevelCentered ||
+                        (secordLevel == null && thirdLevel == null)
+                    ? Stack(
+                        alignment: Alignment.center,
                         children: [
-                          Text(
-                            secordLevel ?? '',
-                            style: textStyle.copyWith(
-                              fontWeight: FontWeight.bold,
+                          Center(
+                            child: Text(
+                              firstLevel!,
+                              style: textStyle.copyWith(
+                                fontSize: firstLevel!.length == 1 ? null : 10.5,
+                              ),
                             ),
                           ),
-                          Text(
-                            firstLevel!,
-                            style: textStyle.copyWith(
-                              fontSize: firstLevel!.length == 1 ? null : 10.5,
-                            ),
+                          Positioned(
+                            bottom: -2.0,
+                            right: -2.0,
+                            child: Text(thirdLevel ?? '', style: textStyle),
                           ),
                         ],
-                      ),
-                      Text(thirdLevel ?? '', style: textStyle),
-                    ],
-                  )),
-      ),
+                      )
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                secordLevel ?? '',
+                                style: textStyle.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                firstLevel!,
+                                style: textStyle.copyWith(
+                                  fontSize:
+                                      firstLevel!.length == 1 ? null : 10.5,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Text(thirdLevel ?? '', style: textStyle),
+                        ],
+                      )),
+          ),
+        );
+      },
     );
   }
 }
@@ -101,12 +134,33 @@ class SpaceButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: shape,
-      child: SizedBox(
-        width: width ?? keySize,
-        height: keySize,
-      ),
+    final keyListener = KeyListenerProvider();
+    final id = switch (keyListener.mode) {
+      KeyTesterMode.phisical => 458796,
+      KeyTesterMode.logical => 32,
+    };
+
+    return ValueListenableBuilder(
+      valueListenable: keyListener.keyNotifier,
+      builder: (_, KeyEvent? event, ___) {
+        Color? color = keyListener.isPassed(id) ? colorWhenPassed : null;
+        if (event?.id == id) {
+          if (event is KeyDownEvent) {
+            color = colorWhenPressed;
+          } else if (event is KeyUpEvent) {
+            keyListener.addToPassedKeys(event);
+            color = colorWhenPassed;
+          }
+        }
+        return Card(
+          color: color,
+          shape: shape,
+          child: SizedBox(
+            width: width ?? keySize,
+            height: keySize,
+          ),
+        );
+      },
     );
   }
 }
@@ -116,17 +170,38 @@ class IsoEnterButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final keyListener = KeyListenerProvider();
+    final id = switch (keyListener.mode) {
+      KeyTesterMode.phisical => 458792,
+      KeyTesterMode.logical => 4294967309,
+    };
+
     const padding = 4.0;
-    return const Padding(
-      padding: EdgeInsets.only(left: padding),
-      child: Card(
-        shape: IsoEnterButtonShape(padding),
-        child: SizedBox(
-          width: keySize,
-          height: keySize * 2 + 7,
-          child: Icon(Icons.subdirectory_arrow_left),
-        ),
-      ),
+    return ValueListenableBuilder(
+      valueListenable: keyListener.keyNotifier,
+      builder: (_, KeyEvent? event, ___) {
+        Color? color = keyListener.isPassed(id) ? colorWhenPassed : null;
+        if (event?.id == id) {
+          if (event is KeyDownEvent) {
+            color = colorWhenPressed;
+          } else if (event is KeyUpEvent) {
+            keyListener.addToPassedKeys(event);
+            color = colorWhenPassed;
+          }
+        }
+        return Padding(
+          padding: const EdgeInsets.only(left: padding),
+          child: Card(
+            color: color,
+            shape: const IsoEnterButtonShape(padding),
+            child: const SizedBox(
+              width: keySize,
+              height: keySize * 2 + 7,
+              child: Icon(Icons.subdirectory_arrow_left),
+            ),
+          ),
+        );
+      },
     );
   }
 }
