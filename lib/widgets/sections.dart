@@ -686,6 +686,8 @@ class SystemSection extends StatelessWidget {
           null,
           null,
           icon: Icon(Icons.pause, size: 15),
+          physicalId: 458824,
+          logicalId: 4294968585,
         ),
       ],
     );
