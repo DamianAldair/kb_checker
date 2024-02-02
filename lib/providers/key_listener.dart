@@ -23,7 +23,7 @@ class KeyListenerProvider {
     logicalPassedKeys = <int>{};
   }
 
-  void addToPassedKeys(KeyUpEvent event) {
+  void addToPassedKeys(KeyEvent event) {
     physicalPassedKeys.add(event.physicalKey.usbHidUsage);
     logicalPassedKeys.add(event.logicalKey.keyId);
   }

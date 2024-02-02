@@ -55,8 +55,8 @@ class KeyButton extends StatelessWidget {
         if (event?.id == id) {
           if (event is KeyDownEvent) {
             color = colorWhenPressed;
-          } else if (event is KeyUpEvent) {
             keyListener.addToPassedKeys(event);
+          } else if (event is KeyUpEvent) {
             color = colorWhenPassed;
           }
         }
