@@ -15,11 +15,13 @@ class KeyButton extends StatelessWidget {
     this.height,
     this.icon,
     this.firstLevelNoBold = false,
+    this.firstLevelCentered = false,
   });
 
   final Widget? icon;
   final String? firstLevel;
   final bool firstLevelNoBold;
+  final bool firstLevelCentered;
   final String? secordLevel;
   final String? thirdLevel;
   final double? width;
@@ -40,14 +42,24 @@ class KeyButton extends StatelessWidget {
           vertical: 3.0,
         ),
         child: icon ??
-            (secordLevel == null && thirdLevel == null
-                ? Center(
-                    child: Text(
-                      firstLevel!,
-                      style: textStyle.copyWith(
-                        fontSize: firstLevel!.length == 1 ? null : 10.5,
+            (firstLevelCentered || (secordLevel == null && thirdLevel == null)
+                ? Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Center(
+                        child: Text(
+                          firstLevel!,
+                          style: textStyle.copyWith(
+                            fontSize: firstLevel!.length == 1 ? null : 10.5,
+                          ),
+                        ),
                       ),
-                    ),
+                      Positioned(
+                        bottom: -2.5,
+                        right: -2.5,
+                        child: Text(thirdLevel ?? '', style: textStyle),
+                      ),
+                    ],
                   )
                 : Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

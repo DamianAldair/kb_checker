@@ -49,25 +49,70 @@ class AlphanumericSection extends StatelessWidget {
           return Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Row(
+              Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  KeyButton('|', '°', '¬'),
-                  KeyButton('1', '!', null),
-                  KeyButton('2', '"', null),
-                  KeyButton('3', '#', null),
-                  KeyButton('4', '\$', null),
-                  KeyButton('5', '%', null),
-                  KeyButton('6', '&', null),
-                  KeyButton('7', '/', null),
-                  KeyButton('8', '(', null),
-                  KeyButton('9', ')', null),
-                  KeyButton('0', '=', null),
-                  KeyButton('\'', '?', '\\'),
-                  KeyButton('¿', '¡', null),
                   KeyButton(
+                    getKeyBeforeNums(locale).$1,
+                    getKeyBeforeNums(locale).$2,
+                    getKeyBeforeNums(locale).$3,
+                  ),
+                  KeyButton(
+                    '1',
+                    getKeyNum1(locale).$1,
+                    getKeyNum1(locale).$2,
+                  ),
+                  KeyButton(
+                    '2',
+                    getKeyNum2(locale).$1,
+                    getKeyNum2(locale).$2,
+                  ),
+                  KeyButton(
+                    '3',
+                    getKeyNum3(locale).$1,
+                    getKeyNum3(locale).$2,
+                  ),
+                  const KeyButton('4', '\$', null),
+                  const KeyButton('5', '%', null),
+                  KeyButton(
+                    '6',
+                    getKeyNum6(locale).$1,
+                    getKeyNum6(locale).$2,
+                  ),
+                  KeyButton(
+                    '7',
+                    getKeyNum7(locale).$1,
+                    getKeyNum7(locale).$2,
+                  ),
+                  KeyButton(
+                    '8',
+                    getKeyNum8(locale).$1,
+                    getKeyNum8(locale).$2,
+                  ),
+                  KeyButton(
+                    '9',
+                    getKeyNum9(locale).$1,
+                    getKeyNum9(locale).$2,
+                  ),
+                  KeyButton(
+                    '0',
+                    getKeyNum0(locale).$1,
+                    getKeyNum0(locale).$2,
+                  ),
+                  KeyButton(
+                    getKeyAfterNums1(locale).$1,
+                    getKeyAfterNums1(locale).$2,
+                    getKeyAfterNums1(locale).$3,
+                  ),
+                  KeyButton(
+                    getKeyAfterNums2(locale).$1,
+                    getKeyAfterNums2(locale).$2,
+                    getKeyAfterNums2(locale).$3,
+                  ),
+                  const KeyButton(
                     null,
                     null,
                     null,
@@ -109,9 +154,19 @@ class AlphanumericSection extends StatelessWidget {
                             ),
                             width: keySize * 1.5,
                           ),
-                          const KeyButton('Q', null, null),
+                          KeyButton(
+                            'Q',
+                            null,
+                            getKeyQ(locale),
+                            firstLevelCentered: true,
+                          ),
                           const KeyButton('W', null, null),
-                          const KeyButton('E', null, null),
+                          KeyButton(
+                            'E',
+                            null,
+                            getKeyE(locale),
+                            firstLevelCentered: true,
+                          ),
                           const KeyButton('R', null, null),
                           const KeyButton('T', null, null),
                           const KeyButton('Y', null, null),
@@ -119,11 +174,23 @@ class AlphanumericSection extends StatelessWidget {
                           const KeyButton('I', null, null),
                           const KeyButton('O', null, null),
                           const KeyButton('P', null, null),
-                          const KeyButton('\u00b4', '¨', null),
-                          const KeyButton('*', '+', '~'),
+                          KeyButton(
+                            getKeyAfter1Letters1(locale).$1,
+                            getKeyAfter1Letters1(locale).$2,
+                            getKeyAfter1Letters1(locale).$3,
+                          ),
+                          KeyButton(
+                            getKeyAfter1Letters2(locale).$1,
+                            getKeyAfter1Letters2(locale).$2,
+                            getKeyAfter1Letters2(locale).$3,
+                          ),
                           if (isAnsi)
-                            const KeyButton('}', ']', '`',
-                                width: keySize * 1.5),
+                            KeyButton(
+                              getKeyAfter1Letters3(locale).$1,
+                              getKeyAfter1Letters3(locale).$2,
+                              getKeyAfter1Letters3(locale).$3,
+                              width: keySize * 1.5,
+                            ),
                         ],
                       ),
                       Row(
@@ -146,9 +213,22 @@ class AlphanumericSection extends StatelessWidget {
                           const KeyButton('J', null, null),
                           const KeyButton('K', null, null),
                           const KeyButton('L', null, null),
-                          const KeyButton('Ñ', null, null),
-                          const KeyButton('{', '[', '^'),
-                          if (!isAnsi) const KeyButton('}', ']', '`'),
+                          KeyButton(
+                            getKeyAfter2Letters1(locale).$1,
+                            getKeyAfter2Letters1(locale).$2,
+                            getKeyAfter2Letters1(locale).$3,
+                          ),
+                          KeyButton(
+                            getKeyAfter2Letters2(locale).$1,
+                            getKeyAfter2Letters2(locale).$2,
+                            getKeyAfter2Letters2(locale).$3,
+                          ),
+                          if (!isAnsi)
+                            KeyButton(
+                              getKeyAfter1Letters3(locale).$1,
+                              getKeyAfter1Letters3(locale).$2,
+                              getKeyAfter1Letters3(locale).$3,
+                            ),
                           if (isAnsi)
                             const KeyButton(
                               null,
@@ -183,9 +263,21 @@ class AlphanumericSection extends StatelessWidget {
                   const KeyButton('B', null, null),
                   const KeyButton('N', null, null),
                   const KeyButton('M', null, null),
-                  const KeyButton(',', ';', null),
-                  const KeyButton('.', ':', null),
-                  const KeyButton('-', '_', null),
+                  KeyButton(
+                    getKeyAfter3Letters1(locale).$1,
+                    getKeyAfter3Letters1(locale).$2,
+                    null,
+                  ),
+                  KeyButton(
+                    getKeyAfter3Letters2(locale).$1,
+                    getKeyAfter3Letters2(locale).$2,
+                    null,
+                  ),
+                  KeyButton(
+                    getKeyAfter3Letters3(locale).$1,
+                    getKeyAfter3Letters3(locale).$2,
+                    null,
+                  ),
                   const KeyButton(
                     null,
                     null,

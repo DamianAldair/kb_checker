@@ -49,6 +49,149 @@ class LayoutProvider {
   }
 }
 
+(String, String, String) getKeyBeforeNums(Locale locale) =>
+    switch (locale.countryCode?.toUpperCase()) {
+      'ES' => ('º', 'ª', '\\'),
+      'LA' => ('|', '°', '¬'),
+      _ => ('`', '~', ''),
+    };
+
+(String, String) getKeyNum1(Locale locale) =>
+    switch (locale.countryCode?.toUpperCase()) {
+      'ES' => ('!', '|'),
+      'LA' => ('!', ''),
+      _ => ('!', ''),
+    };
+
+(String, String) getKeyNum2(Locale locale) =>
+    switch (locale.countryCode?.toUpperCase()) {
+      'ES' => ('"', '@'),
+      'LA' => ('"', ''),
+      _ => ('@', ''),
+    };
+
+(String, String) getKeyNum3(Locale locale) =>
+    switch (locale.countryCode?.toUpperCase()) {
+      'ES' => ('·', '#'),
+      'LA' => ('#', ''),
+      _ => ('#', ''),
+    };
+
+(String, String) getKeyNum6(Locale locale) =>
+    switch (locale.countryCode?.toUpperCase()) {
+      'ES' => ('&', '¬'),
+      'LA' => ('&', ''),
+      _ => ('^', ''),
+    };
+
+(String, String) getKeyNum7(Locale locale) =>
+    switch (locale.countryCode?.toUpperCase()) {
+      'ES' => ('/', ''),
+      'LA' => ('/', ''),
+      _ => ('&', ''),
+    };
+
+(String, String) getKeyNum8(Locale locale) =>
+    switch (locale.countryCode?.toUpperCase()) {
+      'ES' => ('(', ''),
+      'LA' => ('(', ''),
+      _ => ('*', ''),
+    };
+
+(String, String) getKeyNum9(Locale locale) =>
+    switch (locale.countryCode?.toUpperCase()) {
+      'ES' => (')', ''),
+      'LA' => (')', ''),
+      _ => ('(', ''),
+    };
+
+(String, String) getKeyNum0(Locale locale) =>
+    switch (locale.countryCode?.toUpperCase()) {
+      'ES' => ('=', ''),
+      'LA' => ('=', ''),
+      _ => (')', ''),
+    };
+
+(String, String, String) getKeyAfterNums1(Locale locale) =>
+    switch (locale.countryCode?.toUpperCase()) {
+      'ES' => ('\'', '?', ''),
+      'LA' => ('\'', '?', '\\'),
+      _ => ('-', '_', ''),
+    };
+
+(String, String, String) getKeyAfterNums2(Locale locale) =>
+    switch (locale.countryCode?.toUpperCase()) {
+      'ES' => ('¡', '¿', ''),
+      'LA' => ('¿', '¡', ''),
+      _ => ('=', '+', ''),
+    };
+
+String? getKeyQ(Locale locale) => switch (locale.countryCode?.toUpperCase()) {
+      'LA' => '@',
+      _ => null,
+    };
+
+String? getKeyE(Locale locale) => switch (locale.countryCode?.toUpperCase()) {
+      'ES' => '€',
+      _ => null,
+    };
+
+(String, String, String) getKeyAfter1Letters1(Locale locale) =>
+    switch (locale.countryCode?.toUpperCase()) {
+      'ES' => ('`', '^', '['),
+      'LA' => ('\u00b4', '¨', ''),
+      _ => ('[', '{', ''),
+    };
+
+(String, String, String) getKeyAfter1Letters2(Locale locale) =>
+    switch (locale.countryCode?.toUpperCase()) {
+      'ES' => ('+', '*', ']'),
+      'LA' => ('*', '+', '~'),
+      _ => (']', '}', ''),
+    };
+
+(String, String, String) getKeyAfter1Letters3(Locale locale) =>
+    switch (locale.countryCode?.toUpperCase()) {
+      'ES' => ('', 'Ç', '}'),
+      'LA' => ('}', ']', '`'),
+      _ => ('\\', '|', ''),
+    };
+
+(String, String?, String?) getKeyAfter2Letters1(Locale locale) =>
+    switch (locale.countryCode?.toUpperCase()) {
+      'ES' => ('Ñ', null, null),
+      'LA' => ('Ñ', null, null),
+      _ => (';', ':', ''),
+    };
+
+(String, String, String) getKeyAfter2Letters2(Locale locale) =>
+    switch (locale.countryCode?.toUpperCase()) {
+      'ES' => ('\u00b4', '¨', '{'),
+      'LA' => ('{', '[', '^'),
+      _ => ('\u00b4', '"', ''),
+    };
+
+(String, String) getKeyAfter3Letters1(Locale locale) =>
+    switch (locale.countryCode?.toUpperCase()) {
+      'ES' => (',', ';'),
+      'LA' => (',', ';'),
+      _ => (',', '<'),
+    };
+
+(String, String) getKeyAfter3Letters2(Locale locale) =>
+    switch (locale.countryCode?.toUpperCase()) {
+      'ES' => ('.', ':'),
+      'LA' => ('.', ':'),
+      _ => ('.', '>'),
+    };
+
+(String, String) getKeyAfter3Letters3(Locale locale) =>
+    switch (locale.countryCode?.toUpperCase()) {
+      'ES' => ('-', '_'),
+      'LA' => ('-', '_'),
+      _ => ('/', '?'),
+    };
+
 String getKeyInsert(String langCode) => switch (langCode.toLowerCase()) {
       _ => 'Ins',
     };
