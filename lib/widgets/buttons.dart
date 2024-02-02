@@ -55,8 +55,8 @@ class KeyButton extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        bottom: -2.5,
-                        right: -2.5,
+                        bottom: -2.0,
+                        right: -2.0,
                         child: Text(thirdLevel ?? '', style: textStyle),
                       ),
                     ],
