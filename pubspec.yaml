@@ -1,7 +1,7 @@
 name: kb_checker
-description: Keyboard tester.
+description: A keyboard tester.
 publish_to: 'none'
-version: 0.1.0
+version: 1.0.0+1
 
 environment:
   sdk: '>=3.0.2 <4.0.0'
@@ -13,13 +13,13 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  # fluentui_system_icons: any
   intl: any
   package_info_plus: any
   url_launcher: any
   window_manager: any
 
 dev_dependencies:
-  flutter_launcher_icons: any
   flutter_lints: any
   flutter_test:
     sdk: flutter
@@ -29,10 +29,3 @@ flutter:
   generate: true
   assets:
     - assets/icons/
-
-flutter_icons:
-  image_path: 'assets/icons/icon_square.png'
-  windows:
-    generate: true
-    image_path: 'assets/icons/icon_square.png'
-    icon_size: 256
