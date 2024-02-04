@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "damianaldair" "\0"
-            VALUE "FileDescription", "kb_checker" "\0"
+            VALUE "CompanyName", "Damian Aldair" "\0"
+            VALUE "FileDescription", "KB Checker: A keyboard tester" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "kb_checker" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2024 damianaldair. All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2024 Damian Aldair. All rights reserved." "\0"
             VALUE "OriginalFilename", "kb_checker.exe" "\0"
-            VALUE "ProductName", "kb_checker" "\0"
+            VALUE "ProductName", "KB Checker" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
