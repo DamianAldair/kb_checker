@@ -14,6 +14,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: any
+  package_info_plus: any
+  url_launcher: any
   window_manager: any
 
 dev_dependencies:
@@ -25,9 +27,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
-  # assets:
-  #   - assets/icons/
-  #   - assets/images/
+  assets:
+    - assets/icons/
 
 flutter_icons:
   image_path: 'assets/icons/icon_square.png'

@@ -3,14 +3,17 @@ import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
 import 'package:kb_checker/pages/keyboard_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:kb_checker/providers/app_info.dart';
 import 'package:kb_checker/providers/key_listener.dart';
 import 'package:kb_checker/providers/layouts.dart';
 
 const String appTitle = 'KB Checker';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   LayoutProvider().init();
   KeyListenerProvider().init();
+  AppInfo().init();
 
   runApp(const MainApp());
 

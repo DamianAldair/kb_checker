@@ -2,10 +2,12 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kb_checker/helpers/extensions.dart';
+import 'package:kb_checker/providers/app_info.dart';
 import 'package:kb_checker/providers/key_listener.dart';
 import 'package:kb_checker/providers/layouts.dart';
 import 'package:kb_checker/widgets/sections.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class KeyboardPage extends StatefulWidget {
   const KeyboardPage({super.key});
@@ -173,7 +175,33 @@ class _KeyboardPageState extends State<KeyboardPage> {
                     IconButton(
                       icon: const Icon(Icons.info_outline),
                       tooltip: AppLocalizations.of(context).about,
-                      onPressed: () {},
+                      onPressed: () {
+                        final info = AppInfo();
+                        showAboutDialog(
+                          context: context,
+                          applicationVersion: info.version,
+                          applicationIcon: Container(
+                            alignment: Alignment.center,
+                            height: 50.0,
+                            child: Image.asset('assets/icons/icon.png'),
+                          ),
+                          children: [
+                            Text(
+                              '${AppLocalizations.of(context).designedAndProgrammedBy}:',
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            Text(info.author),
+                            InkWell(
+                              child: Text(info.authorUrl),
+                              onTap: () => launchUrl(
+                                Uri.parse(info.authorUrl),
+                                mode: LaunchMode.externalApplication,
+                              ),
+                            ),
+                          ],
+                        );
+                      },
                     ),
                   ],
                 ),

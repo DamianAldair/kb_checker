@@ -99,17 +99,29 @@ abstract class AppLocalizations {
   /// **'About'**
   String get about;
 
-  /// No description provided for @id.
+  /// No description provided for @checkerMode.
   ///
   /// In en, this message translates to:
-  /// **'ID'**
-  String get id;
+  /// **'Checker mode'**
+  String get checkerMode;
 
   /// No description provided for @debugName.
   ///
   /// In en, this message translates to:
   /// **'Name'**
   String get debugName;
+
+  /// No description provided for @designedAndProgrammedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Designed and programmed by'**
+  String get designedAndProgrammedBy;
+
+  /// No description provided for @id.
+  ///
+  /// In en, this message translates to:
+  /// **'ID'**
+  String get id;
 
   /// No description provided for @keyLabel.
   ///
@@ -140,12 +152,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Reset'**
   String get reset;
-
-  /// No description provided for @checkerMode.
-  ///
-  /// In en, this message translates to:
-  /// **'Checker mode'**
-  String get checkerMode;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

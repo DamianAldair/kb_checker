@@ -8,10 +8,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get about => 'About';
 
   @override
-  String get id => 'ID';
+  String get checkerMode => 'Checker mode';
 
   @override
   String get debugName => 'Name';
+
+  @override
+  String get designedAndProgrammedBy => 'Designed and programmed by';
+
+  @override
+  String get id => 'ID';
 
   @override
   String get keyLabel => 'Key label';
@@ -27,7 +33,4 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get reset => 'Reset';
-
-  @override
-  String get checkerMode => 'Checker mode';
 }
